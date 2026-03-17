@@ -13,6 +13,11 @@ const MIME_TYPES = {
     '.png': 'image/png',
     '.jpg': 'image/jpg',
     '.ico': 'image/x-icon',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.ttf': 'font/ttf',
+    '.eot': 'application/vnd.ms-fontobject',
+    '.svg': 'image/svg+xml',
 };
 
 const server = http.createServer(async (req, res) => {
