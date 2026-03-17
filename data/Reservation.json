@@ -28,8 +28,25 @@
       "key_scan_data": null
     },
     "qr_code_data": "VP-1773730455972-96",
-    "status": "active",
+    "status": "completed",
     "check_in_time": "2026-03-17T06:54:15.990Z",
+    "check_out_time": "2026-03-17T14:34:52.829Z",
+    "parking_duration": null
+  },
+  {
+    "reservation_id": "5599dd61-31b5-4d45-bdd1-a6c9ab242c5f",
+    "customer": {
+      "full_name": "tati",
+      "mobile_number": "301555678989"
+    },
+    "vehicle": {
+      "license_plate": "MMR9876",
+      "damage_report": null,
+      "key_scan_data": null
+    },
+    "qr_code_data": "VP-1773758083449-391",
+    "status": "active",
+    "check_in_time": "2026-03-17T14:34:43.470Z",
     "check_out_time": null,
     "parking_duration": null
   }

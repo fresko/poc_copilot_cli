@@ -165,7 +165,8 @@ function renderReservations(data) {
     sorted.forEach(res => {
         const tr = document.createElement('tr');
         const checkIn = new Date(res.check_in_time).toLocaleString();
-        
+        const checkOut = res.check_out_time ? new Date(res.check_out_time).toLocaleString() : '—';
+
         // Safe access to nested properties
         const plate = res.vehicle?.license_plate || 'Unknown';
         const damage = res.vehicle?.damage_report || 'No damage reported';
@@ -182,6 +183,7 @@ function renderReservations(data) {
                 <small class="text-muted">${mobile}</small>
             </td>
             <td>${checkIn}</td>
+            <td>${checkOut}</td>
             <td><span class="status-badge status-${(res.status || 'active').toLowerCase()}">${
             res.status === 'completed' ? 'CheckOut' :
             res.status === 'active' ? '<i class="fas fa-car me-1"></i>active' :
