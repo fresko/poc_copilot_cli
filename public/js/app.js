@@ -182,7 +182,11 @@ function renderReservations(data) {
                 <small class="text-muted">${mobile}</small>
             </td>
             <td>${checkIn}</td>
-            <td><span class="status-badge status-${(res.status || 'active').toLowerCase()}">${res.status || 'active'}</span></td>
+            <td><span class="status-badge status-${(res.status || 'active').toLowerCase()}">${
+            res.status === 'completed' ? 'CheckOut' :
+            res.status === 'active' ? '<i class="fas fa-car me-1"></i>active' :
+            (res.status || 'active')
+        }</span></td>
             <td class="text-end pe-4">
                 ${res.status === 'active' ? `
                 <button class="btn btn-sm btn-success btn-action" title="Check Out" onclick="checkOut('${res.reservation_id}')">
