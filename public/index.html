@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valet Parking Manager</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="vendor/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/all.min.css">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -30,7 +30,19 @@
             padding: 5px 10px;
             border-radius: 20px;
         }
-        .status-active { background-color: #e1f5fe; color: #0288d1; }
+        @keyframes activePulse {
+            0%   { box-shadow: 0 0 0 0 rgba(2, 136, 209, 0.45); }
+            70%  { box-shadow: 0 0 0 7px rgba(2, 136, 209, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(2, 136, 209, 0); }
+        }
+        .status-active {
+            background-color: #e1f5fe;
+            color: #0288d1;
+            animation: activePulse 1.8s ease-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .status-active { animation: none; }
+        }
         .status-completed { background-color: #e8f5e9; color: #2e7d32; }
         .status-cancelled { background-color: #ffebee; color: #c62828; }
         
@@ -220,7 +232,7 @@
         <i class="fas fa-plus"></i>
     </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
