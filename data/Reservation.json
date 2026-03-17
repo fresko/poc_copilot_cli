@@ -11,8 +11,25 @@
       "key_scan_data": null
     },
     "qr_code_data": "VP-1773725545808-437",
-    "status": "active",
+    "status": "completed",
     "check_in_time": "2026-03-17T05:32:25.820Z",
+    "check_out_time": "2026-03-17T06:51:51.250Z",
+    "parking_duration": null
+  },
+  {
+    "reservation_id": "c0838ae2-3b91-46e2-b36b-9a16541be69b",
+    "customer": {
+      "full_name": "fresko",
+      "mobile_number": "401555678989"
+    },
+    "vehicle": {
+      "license_plate": "abc1234",
+      "damage_report": null,
+      "key_scan_data": null
+    },
+    "qr_code_data": "VP-1773730455972-96",
+    "status": "active",
+    "check_in_time": "2026-03-17T06:54:15.990Z",
     "check_out_time": null,
     "parking_duration": null
   }
