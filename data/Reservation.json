@@ -1,0 +1,19 @@
+[
+  {
+    "reservation_id": "141546c5-48ca-4491-94c2-c1108fc10e02",
+    "customer": {
+      "full_name": "fresko",
+      "mobile_number": "3102345455"
+    },
+    "vehicle": {
+      "license_plate": "abc1234",
+      "damage_report": "NA",
+      "key_scan_data": null
+    },
+    "qr_code_data": "VP-1773725545808-437",
+    "status": "active",
+    "check_in_time": "2026-03-17T05:32:25.820Z",
+    "check_out_time": null,
+    "parking_duration": null
+  }
+]
