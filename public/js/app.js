@@ -133,6 +133,18 @@ function drawHand(ctx, pos, length, width, color = '#333') {
     ctx.rotate(-pos);
 }
 
+// Status display helper
+function getStatusDisplay(status) {
+    switch ((status || 'active').toLowerCase()) {
+        case 'active':
+            return '<i class="fas fa-car me-1" aria-hidden="true"></i>Active';
+        case 'completed':
+            return 'Checkout';
+        default:
+            return status || 'active';
+    }
+}
+
 // Fetch Data
 async function fetchReservations() {
     try {
@@ -182,7 +194,7 @@ function renderReservations(data) {
                 <small class="text-muted">${mobile}</small>
             </td>
             <td>${checkIn}</td>
-            <td><span class="status-badge status-${(res.status || 'active').toLowerCase()}">${res.status || 'active'}</span></td>
+            <td><span class="status-badge status-${(res.status || 'active').toLowerCase()}">${getStatusDisplay(res.status)}</span></td>
             <td class="text-end pe-4">
                 ${res.status === 'active' ? `
                 <button class="btn btn-sm btn-success btn-action" title="Check Out" onclick="checkOut('${res.reservation_id}')">
