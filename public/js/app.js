@@ -1,5 +1,9 @@
 const API_URL = 'http://localhost:3000/api';
 
+// Time constants
+const MS_PER_MINUTE = 60000;
+const MINUTES_PER_HOUR = 60;
+
 // State
 let reservations = [];
 let pendingCheckoutId = null;
@@ -18,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchReservations();
     setupSearch();
     
+    // Refresh active reservation durations every minute
+    setInterval(() => {
+        if (reservations.some(r => r.status === 'active')) {
+            renderReservations(reservations);
+        }
+    }, MS_PER_MINUTE);
+
     // Checkout Modal Events
     const checkoutModalEl = document.getElementById('checkoutModal');
     checkoutModalEl.addEventListener('shown.bs.modal', startClock);
@@ -133,6 +144,19 @@ function drawHand(ctx, pos, length, width, color = '#333') {
     ctx.rotate(-pos);
 }
 
+// Calculate elapsed time between two ISO date strings and format as HH:MM
+function formatDuration(startIso, endIso) {
+    if (!startIso) return '—';
+    const start = new Date(startIso);
+    const end = endIso ? new Date(endIso) : new Date();
+    const diffMs = end - start;
+    if (isNaN(diffMs) || diffMs < 0) return '—';
+    const totalMinutes = Math.floor(diffMs / MS_PER_MINUTE);
+    const hours = Math.floor(totalMinutes / MINUTES_PER_HOUR).toString().padStart(2, '0');
+    const minutes = (totalMinutes % MINUTES_PER_HOUR).toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
+
 // Fetch Data
 async function fetchReservations() {
     try {
@@ -166,6 +190,7 @@ function renderReservations(data) {
         const tr = document.createElement('tr');
         const checkIn = new Date(res.check_in_time).toLocaleString();
         const checkOut = res.check_out_time ? new Date(res.check_out_time).toLocaleString() : '—';
+        const duration = formatDuration(res.check_in_time, res.check_out_time);
 
         // Safe access to nested properties
         const plate = res.vehicle?.license_plate || 'Unknown';
@@ -184,6 +209,7 @@ function renderReservations(data) {
             </td>
             <td>${checkIn}</td>
             <td>${checkOut}</td>
+            <td class="font-monospace">${duration}</td>
             <td><span class="status-badge status-${(res.status || 'active').toLowerCase()}">${
             res.status === 'completed' ? 'CheckOut' :
             res.status === 'active' ? '<i class="fas fa-car me-1"></i>active' :
